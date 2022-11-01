@@ -52,15 +52,15 @@
                     <h3 class="mb-4">Sign up</h3>
                     <form action="<?= htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                        
-                        <div class="input-group mb-3" <?= (!empty($email_err)) ? 'has-error' : ''; ?>">
+                        <div class="input-group mb-3" <?= (!empty($email_err)) ? 'has-error' : ''; ?>>
                             <input type="email" class="form-control" name="email"value="<?= $email; ?>" placeholder="Email">
                         </div>
                         <span class="help-block"><?= $email_err; ?></span>
-                        <div class="input-group mb-4" <?= (!empty($password_err)) ? 'has-error' : ''; ?>">
+                        <div class="input-group mb-4" <?= (!empty($password_err)) ? 'has-error' : ''; ?>>
                             <input type="password" class="form-control" placeholder="password" name="password" placeholder="Password" value="<?= $password; ?>">
                         </div>
                         <span class="help-block"><?= $password_err; ?></span>
-                        <div class="input-group mb-4" <?= (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
+                        <div class="input-group mb-4" <?= (!empty($confirm_password_err)) ? 'has-error' : ''; ?>>
                             <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password" value="<?= $confirm_password; ?>">
                         </div>
                         <span class="help-block"><?= $confirm_password_err; ?></span>
