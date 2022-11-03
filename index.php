@@ -1,23 +1,17 @@
 <?php
 
 
-if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: welcome.php");
-    exit;
-}
+// if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+//     header("location: welcome.php");
+//     exit;
+// }
 
 ?>
 
-
 <!DOCTYPE HTML>
-<!--
-	Eventually by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
 	<head>
-		<title>Eventually by HTML5 UP</title>
+		<title>Business Directory</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -26,33 +20,26 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 		<!-- Header -->
 			<header id="header">
 				<h1>Business Directory</h1>
-				<p></a>.</p>
+				<h3 class="mb-4">Sign In</h3>
 			</header>
 
 		<!-- Signup Form -->
-        <form id="signup-form" action="<?= htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        <form id="signup-form" action="" method="post">
                     <div class="card-body text-center">
                         <div class="mb-4">
                             <i class="feather icon-unlock auth-icon"></i>
                         </div>
-                        <h3 class="mb-4">Login</h3>
-                        <div class="input-group mb-3<?= (!empty($email_err)) ? 'has-error' : ''; ?>">
-                            <input type="email" class="form-control"name="email" placeholder="Email" value="<?= $email; ?>">
-                        </div>
-                        <span class="help-block"><?= $email_err; ?></span>
-                        <div class="input-group mb-4"<?= (!empty($password_err)) ? 'has-error' : ''; ?>>
+                        <div class="input-group mb-3">
+                            <input type="email" class="form-control"name="email" placeholder="Email" value="">
+                        </div><br>         
+                        <div class="input-group mb-4">
                             <input type="password" class="form-control" name="password" placeholder="password">
+                        </div><br>    
+						<button class="btn btn-primary shadow-2 mb-4">Login</button><br>       
+                        <br><div class="form-group text-left">					        
+                        <p class="mb-0 text-muted">Don’t have an account? <a href="registration.php">Signup</a></p>
                         </div>
-                        <span class="help-block"><?= $password_err; ?></span>
-                        <div class="form-group text-left">
-                            <div class="checkbox checkbox-fill d-inline">
-                                <input type="checkbox" name="checkbox-fill-1" id="checkbox-fill-a1" checked="">
-                                <label for="checkbox-fill-a1" class="cr"> Save Details</label>
-                            </div>
-                        </div>
-                        <button class="btn btn-primary shadow-2 mb-4">Login</button>
-                        <p class="mb-2 text-muted">Forgot password? <a href="auth-reset-password.html">Reset</a></p>
-                        <p class="mb-0 text-muted">Don’t have an account? <a href="register.php">Signup</a></p>
+                        
                     </div>
                 </form>
 
@@ -65,7 +52,7 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 					<li><a href="#" class="icon fa-envelope"><span class="label">Email</span></a></li>
 				</ul>
 				<ul class="copyright">
-					<li>&copy; Untitled.</li><li>Credits: <a href="http://html5up.net">HTML5 UP</a></li>
+					<li>&copy; All Copyrights.</li><li>Credits: <a href="">Amin Maqsood</a></li>
 				</ul>
 			</footer>
 
