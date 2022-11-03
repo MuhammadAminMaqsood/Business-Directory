@@ -31,20 +31,20 @@
                             <i class="feather icon-unlock auth-icon"></i>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control"name="name" placeholder="Full Name" value="">
+                            <input type="text" class="form-control"name="name" placeholder="Full Name" value="" required>
                         </div><br>
 						<div class="input-group mb-3">
-                            <input type="email" class="form-control"name="email" placeholder="Email" value="">
+                            <input type="email" class="form-control"name="email" placeholder="Email" value="" required> 
                         </div><br>
                        
 						<div class="input-group mb-3">
-                            <input type="text" class="form-control"name="name" placeholder="Contact No" value="">
+                            <input type="text" class="form-control"name="name" placeholder="Contact No" value="" required>
                         </div><br>
 						<div class="input-group mb-3">
-                            <input type="text" class="form-control"name="name" placeholder="User login" value="">
+                            <input type="text" class="form-control"name="name" placeholder="User login" value="" required>
                         </div><br>
                         <div class="input-group mb-4">
-                            <input type="password" class="form-control" name="password" placeholder="password">
+                            <input type="password" class="form-control" name="password" placeholder="password" required>
                         </div><br>
             
                         <div class="form-group text-left">
@@ -54,7 +54,7 @@
                             </div> -->
 							<button class="btn btn-primary shadow-2 mb-4">Sign Up</button>               
                         </div>
-						
+					</div>	
                 </form>
 
 		<!-- Footer -->

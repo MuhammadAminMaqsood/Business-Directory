@@ -135,6 +135,7 @@ body {
   position: fixed;
   top: 0;
   width: 100%;
+  background-color: darkgrey;
   z-index: 1; }
   #bg div {
     -moz-transition: opacity 3s ease;
