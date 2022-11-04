@@ -1,12 +1,31 @@
 <?php
+session_start();
+require ("conn.php");
+ 
+  if(isset($_POST["submit"]))
+  { 
+	 $name=$_POST["name"];
+	 $email=$_POST["email"];
+	 $contact=$_POST["Contact"];
+	 $pass=$_POST["password"];
 
+	 $sql ="INSERT INTO user(uname,uemail, ucontact,upassword) VALUES ('{$name}','{$email}','{$contact}','{$pass}')";
+	 $result = mysqli_query($conn, $sql) or die("Query Unsuccessful.");
 
-// if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-//     header("location: welcome.php");
-//     exit;
-// }
+		if ($result){
+			header("Location:index.php");
+		}
+		else{
+			echo "Failed";
+		}
+			
+			
+			mysqli_close($conn);
+			
+				
+		}
 
-// ?>
+ ?>
 
 <!DOCTYPE HTML>
 <html>
@@ -38,10 +57,7 @@
                         </div><br>
                        
 						<div class="input-group mb-3">
-                            <input type="text" class="form-control"name="name" placeholder="Contact No" value="" required>
-                        </div><br>
-						<div class="input-group mb-3">
-                            <input type="text" class="form-control"name="name" placeholder="User login" value="" required>
+                            <input type="text" class="form-control"name="Contact" placeholder="Contact No" value="" required>
                         </div><br>
                         <div class="input-group mb-4">
                             <input type="password" class="form-control" name="password" placeholder="password" required>
@@ -52,7 +68,10 @@
                                 <input type="checkbox" name="checkbox-fill-1" id="checkbox-fill-a1" checked="">
                                 <label for="checkbox-fill-a1" class="cr">Admin</label>
                             </div> -->
-							<button class="btn btn-primary shadow-2 mb-4">Sign Up</button>               
+							<div class="input-group mb-4">
+							<input class="submit" name="submit" type="submit" class="btn btn-primary shadow-2 mb-4" value="Save"  />
+                        </div><br>
+							<!-- <button class="btn btn-primary shadow-2 mb-4">Sign Up</button>                -->
                         </div>
 					</div>	
                 </form>
