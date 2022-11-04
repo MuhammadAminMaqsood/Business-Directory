@@ -10,10 +10,10 @@ $db_name = "directory";
 $conn = new mysqli($host_name,$user_name,$password,$db_name);
  
 // Check connection
-if($conn){
-    echo "Connection ok";
-}
-else{
-    echo "Connection failde";
-}
+// if($conn){
+//     echo "Connection ok";
+// }
+// else{
+//     echo "Connection failde";
+// }
 ?>
