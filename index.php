@@ -1,16 +1,18 @@
 <?php
 // Initialize the session
 session_start();
-$_SESSION["email"] = "";
+// $_SESSION["uemail"] !="";
 
 // Include config file
 require ("conn.php");
  
 // Check if the user is already logged in, if yes then redirect him to welcome page
-if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: userprofile.php");
-    exit;
-}
+// if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+//     header("location: userprofile.php");
+//     exit;
+// }
+// if( $_SESSION["uemail"] !="")
+// {
 //  Include config file
 if(isset($_POST["btn_login"]))
 {
@@ -25,7 +27,7 @@ if(isset($_POST["btn_login"]))
     {
       if($email == $row["uemail"] && $paswrd == $row["upassword"])
       {
-          $_SESSION["uemail"] = "$email" ;
+        //   $_SESSION["uemail"] = "$email" ;
           header("location: userprofile.php");
       }
       else
@@ -40,7 +42,6 @@ if(isset($_POST["btn_login"]))
    }
 
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -83,10 +84,11 @@ if(isset($_POST["btn_login"]))
             <div class="card">
                 <form action="" method="post">
                     <div class="card-body text-center">
+                        <h3 class="mb-4"><b>Business Directory</b></h3>
                         <div class="mb-4">
                             <i class="feather icon-unlock auth-icon"></i>
-                        </div>
-                        <h3 class="mb-4">Login</h3>
+                        </div>                  
+                        <!-- <h3 class="mb-4">Login</h3> -->
                         <div class="input-group mb-3">
                             <input type="email" class="form-control"name="email" placeholder="Email" value="">
                         </div>
@@ -108,7 +110,15 @@ if(isset($_POST["btn_login"]))
             </div>
         </div>
     </div>
+    <?php
 
+// }
+// else
+// {
+//     header("location:index.php");
+// }
+
+?>
     <!-- Required Js -->
     <script src="assets/js/vendor-all.min.js"></script>
 	<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>

@@ -63,10 +63,11 @@
             </div>
             <div class="card">
                 <div class="card-body text-center">
+                <h3 class="mb-4"><b>Business Directory</b></h3>
                     <div class="mb-4">
                         <i class="feather icon-user-plus auth-icon"></i>
                     </div>
-                    <h3 class="mb-4">Sign up</h3>
+                    <!-- <h3 class="mb-4">Sign up</h3> -->
                     <form action="" method="post">
                        
                         <div class="input-group mb-3">
