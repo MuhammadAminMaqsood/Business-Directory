@@ -1,32 +1,15 @@
 <?php
-  require ("conn.php");
-  if(isset($_POST["submit"]))
-	{      
-	  $name = $_POST['name'];
-	  $email = $_POST['email'];
-	  $contact = $_POST['Contact'];
-	  $pass = $_POST['password'];
-      $img = $_POST['image'];
-  
-  $sql ="INSERT INTO user(uname,uemail,ucontact,upassword,uimage) VALUES('$name','$email','$contact','$pass',' $img')";
-  $result = mysqli_query($conn, $sql) or die("Query Unsuccessful.");
-  
- if ($result){
-  
-  header("Location:index.php");
- }
- else{
-	  echo "Failed";
-  }
-  }    
-   mysqli_close($conn);		
+    // Include config file
+    require_once 'config.php';
+    // Include register file
+    include 'php_register.php';
 ?>
  
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>Business Directory</title>
+    <title>soengsouy.com</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
@@ -43,7 +26,7 @@
     <!-- animation css -->
     <link rel="stylesheet" href="assets/plugins/animation/css/animate.min.css">
     <!-- vendor css -->
-    <link rel="stylesheet" href="assets/css/style (2).css">
+    <link rel="stylesheet" href="assets/css/style.css">
 
 </head>
 
@@ -63,43 +46,38 @@
             </div>
             <div class="card">
                 <div class="card-body text-center">
-                <h3 class="mb-4"><b>Business Directory</b></h3>
                     <div class="mb-4">
                         <i class="feather icon-user-plus auth-icon"></i>
                     </div>
-                    <!-- <h3 class="mb-4">Sign up</h3> -->
-                    <form action="" method="post">
+                    <h3 class="mb-4">Sign up</h3>
+                    <form action="<?= htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                        
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" name="name" value="" placeholder="Full Name" required>
+                        <div class="input-group mb-3" <?= (!empty($email_err)) ? 'has-error' : ''; ?>">
+                            <input type="email" class="form-control" name="email"value="<?= $email; ?>" placeholder="Email">
                         </div>
-                        <span class="help-block"></span>
-						<div class="input-group mb-3">
-                            <input type="email" class="form-control" name="email" value="" placeholder="Email" required>
+                        <span class="help-block"><?= $email_err; ?></span>
+                        <div class="input-group mb-4" <?= (!empty($password_err)) ? 'has-error' : ''; ?>">
+                            <input type="password" class="form-control" placeholder="password" name="password" placeholder="Password" value="<?= $password; ?>">
                         </div>
-                        <span class="help-block"></span>
-						<div class="input-group mb-3">
-                            <input type="text" class="form-control" name="Contact" value="" placeholder="Contact No" required>
+                        <span class="help-block"><?= $password_err; ?></span>
+                        <div class="input-group mb-4" <?= (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
+                            <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password" value="<?= $confirm_password; ?>">
                         </div>
-                        <span class="help-block"></span>
-                        <div class="input-group mb-4" >
-                            <input type="password" class="form-control" placeholder="password" name="password" placeholder="Password" value="" required>
-                        </div>
-                        <span class="help-block"></span>
-                     
-                         <div class="form-group text-left">                        
-                            <div class="mb-3">
-		                        <label class="form-label">Upload Image</label> <input type="file"  class="form-control" name="image" required>
+                        <span class="help-block"><?= $confirm_password_err; ?></span>
+                        <div class="form-group text-left">
+                            <div class="checkbox checkbox-fill d-inline">
+                                <input type="checkbox" name="checkbox-fill-1" id="checkbox-fill-1" checked="">
+                                <label for="checkbox-fill-1" class="cr"> Save Details</label>
                             </div>
-                        </div> 
-                        <!-- <div class="form-group text-left">
+                        </div>
+                        <div class="form-group text-left">
                             <div class="checkbox checkbox-fill d-inline">
                                 <input type="checkbox" name="checkbox-fill-2" id="checkbox-fill-2">
                                 <label for="checkbox-fill-2" class="cr">Send me the <a href="#!"> Newsletter</a> weekly.</label>
                             </div>
-                        </div> -->
-                        <button name="submit" class="btn btn-primary shadow-2 mb-4">Signup</button>
-                        <p class="mb-0 text-muted">Already have an account? <a href="index.php">Login</a></p>
+                        </div>
+                        <button class="btn btn-primary shadow-2 mb-4">Sign up</button>
+                        <p class="mb-0 text-muted">Allready have an account? <a href="auth-signin.html"> Log in</a></p>
                     </form>
                 </div>
             </div>

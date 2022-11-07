@@ -1,62 +1,24 @@
 <?php
 // Initialize the session
 session_start();
-// $_SESSION["uemail"] !="";
-
-// Include config file
-require ("conn.php");
  
-// Check if the user is already logged in, if yes then redirect him to welcome page
-// if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-//     header("location: userprofile.php");
-//     exit;
-// }
-//  Include config file
-if(isset($_POST["btn_login"]))
-{
-  $email = $_POST["email"];
-  $paswrd = $_POST["password"];
-
-  $sql_query ="SELECT * FROM user WHERE uemail= '$email' ";
-  $result=$conn->query($sql_query);
-  if($result->num_rows > 0)
-  {
-    while($row = $result->fetch_assoc())
-    {
-      if($email == $row["uemail"] && $paswrd == $row["upassword"])
-      {
-        $_SESSION['user_email'] = $email;
-
-        // $sql_query ="SELECT * FROM bdd ";
-        // $result=$conn->query($sql_query);
-
-        // $_SESSION['id'] = $id;
-        // $_SESSION['fname'] = $fname;
-        // $_SESSION['pp'] = $pp;
-        // $_SESSION['pp'] = $pp;
-        // $_SESSION['pp'] = $pp;
-        
-          
-          header("location: userprofile.php");
-      }
-      else
-        {
-          echo '<script> alert("Invalid Password");</script>';
-        }
-    }   
-  }
-  else
-   {
-      echo '<script> alert("Invalid Email");</script>';
-   }
-
+// Check if the user is logged in, if not then redirect to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login.php");
+    exit;
 }
+ 
+// Include config file
+require_once "config.php";
+require_once "php_reset_password.php";
+ 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Business Directory</title>
+    <title>soengsouy.com</title>
     <!-- Meta -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
@@ -72,7 +34,7 @@ if(isset($_POST["btn_login"]))
     <!-- animation css -->
     <link rel="stylesheet" href="assets/plugins/animation/css/animate.min.css">
     <!-- vendor css -->
-    <link rel="stylesheet" href="assets/css/style (2).css">
+    <link rel="stylesheet" href="assets/css/style.css">
 
 </head>
 <style>
@@ -91,36 +53,36 @@ if(isset($_POST["btn_login"]))
                 <span class="r"></span>
             </div>
             <div class="card">
-                <form action="" method="post">
+                <form action="<?= htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
                     <div class="card-body text-center">
-                        <h3 class="mb-4"><b>Business Directory</b></h3>
                         <div class="mb-4">
                             <i class="feather icon-unlock auth-icon"></i>
-                        </div>                  
-                        <!-- <h3 class="mb-4">Login</h3> -->
-                        <div class="input-group mb-3">
-                            <input type="email" class="form-control"name="email" placeholder="Email" value="" required>
                         </div>
-                        <span class="help-block"></span>
-                        <div class="input-group mb-4">
-                            <input type="password" class="form-control" name="password" placeholder="password" required>
+                        <h3 class="mb-4">Reset Password</h3>
+                        <div class="input-group mb-3"<?= (!empty($new_password_err)) ? 'has-error' : ''; ?>">
+                            <input type="password" class="form-control" name="new_password" placeholder="New Password" value="<?= $new_password; ?>">				
                         </div>
-                        <span class="help-block"></span>
+                        <span class="help-block"><?= $new_password_err; ?></span>
+                       
+                        <div class="input-group mb-4"<?= (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
+                            <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password" value="<?= $confirm_password; ?>">				
+                        </div>
+                        <span class="help-block"><?= $confirm_password_err; ?></span>
                         <div class="form-group text-left">
-                            <!-- <div class="checkbox checkbox-fill d-inline">
+                            <div class="checkbox checkbox-fill d-inline">
                                 <input type="checkbox" name="checkbox-fill-1" id="checkbox-fill-a1" checked="">
                                 <label for="checkbox-fill-a1" class="cr"> Save Details</label>
-                            </div> -->
+                            </div>
                         </div>
-                        <button name="btn_login" class="btn btn-primary shadow-2 mb-4">Login</button>
-                        <p class="mb-0 text-muted">Don’t have an account? <a href="registration.php">Signup</a></p>
+                        <button class="btn btn-primary shadow-2 mb-4">Change Password</button>
+                        <p class="mb-2 text-muted">Forgot password? <a href="auth-reset-password.html">Reset</a></p>
+                        <p class="mb-0 text-muted">Don’t have an account? <a href="register.php">Signup</a></p>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-    <?php
-?>
+
     <!-- Required Js -->
     <script src="assets/js/vendor-all.min.js"></script>
 	<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>

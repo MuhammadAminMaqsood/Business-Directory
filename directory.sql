@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 05, 2022 at 11:37 AM
+-- Generation Time: Nov 07, 2022 at 11:33 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.6
 
@@ -20,6 +20,37 @@ SET time_zone = "+00:00";
 --
 -- Database: `directory`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bdd`
+--
+
+CREATE TABLE `bdd` (
+  `b_id` int(11) NOT NULL,
+  `b_name` varchar(100) NOT NULL,
+  `b_address` varchar(200) NOT NULL,
+  `b_phoneno` int(50) NOT NULL,
+  `b_officialno` int(50) NOT NULL,
+  `b_faxno` int(50) NOT NULL,
+  `b_email` varchar(100) NOT NULL,
+  `b_website` varchar(200) NOT NULL,
+  `b_status` varchar(100) NOT NULL,
+  `b_logo` varchar(300) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `bdd`
+--
+
+INSERT INTO `bdd` (`b_id`, `b_name`, `b_address`, `b_phoneno`, `b_officialno`, `b_faxno`, `b_email`, `b_website`, `b_status`, `b_logo`) VALUES
+(40, 'Muhammad Amin Maqsood', 'amin@gmail.com', 2147483647, 2147483647, 2564, 'amin@gmail.com', 'www.hghbbn.com', 'on', '24x24.png'),
+(41, 'Muhammad Amin Maqsood', 'amin@gmail.com', 2147483647, 2147483647, 2564, 'amin@gmail.com', 'www.hghbbn.com', 'on', '24x24.png'),
+(42, 'Muhammad Amin Maqsood', 'amin@gmail.com', 2147483647, 2147483647, 2564, 'amin@gmail.com', 'www.hghbbn.com', 'on', '24x24.png'),
+(43, 'Muhammad Amin Maqsood', 'amin@gmail.com', 2147483647, 2147483647, 2564, 'amin@gmail.com', 'www.hghbbn.com', 'on', '24x24.png'),
+(49, 'Muhammad Amin Maqsood', 'amin@gmail.com', 2147483647, 2147483647, 2564, 'amin@gmail.com', 'www.hghbbn.com', 'on', ''),
+(50, 'Muhammad Amin Maqsood', 'amin@gmail.com', 2147483647, 2147483647, 2564, 'amin@gmail.com', 'www.hghbbn.com', 'on', '');
 
 -- --------------------------------------------------------
 
@@ -53,6 +84,12 @@ INSERT INTO `user` (`id`, `uname`, `uemail`, `ucontact`, `upassword`, `uimage`) 
 --
 
 --
+-- Indexes for table `bdd`
+--
+ALTER TABLE `bdd`
+  ADD PRIMARY KEY (`b_id`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -63,10 +100,16 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT for table `bdd`
+--
+ALTER TABLE `bdd`
+  MODIFY `b_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+
+--
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -1,11 +1,15 @@
 <?php
-// session_start();
+session_start();
 require("conn.php");
-// $sql = "SELECT * FROM user";
-// $result = mysqli_query($conn, $sql) or die("Query Unsuccessful.");
 
-// if(mysqli_num_rows($result) > 0)  {
 
+$user = $_SESSION['user_email'];
+if($user == true)
+{
+
+}else{
+  header('location:index.php');
+}
 ?>
 
 <!DOCTYPE html>
@@ -20,98 +24,148 @@ require("conn.php");
   <!-- End Header -->
 
   <!-- ======= Hero Section ======= -->
-
   <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
- 
-    <div class="hero-container" data-aos="fade-in">
-      <h1></h1>
-      <p>I'm <span class="typed" data-typed-items="Designer, Developer, Freelancer, Photographer"></span></p>
+    <div  style="margin-bottom: 90px;" class="hero-container" data-aos="fade-in">
+      <?php
+    $sql = "SELECT * FROM user";
+$result =$conn->query($sql) or die("Query Unsuccessful.");
+
+if(mysqli_num_rows($result) > 0)  {
+    $row = mysqli_fetch_assoc($result)
+      ?>
+      <h1><?php echo $row['uname']; ?></h1>
+      <p>You're <span class="typed" data-typed-items="Business Men, Designer, Developer, Freelancer,Photographer"></span></p>
+      <?php }?>
     </div>
   </section>
   <!-- End Hero -->
 
   <main id="main">
 
-    <!-- ======= About Section ======= -->
-    <section id="about" class="about">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>About</h2>
-          <p></p>
-        </div>
-
-        <!-- <div class="row">
-          <div class="col-lg-4" data-aos="fade-right">
-            <img src="assets/img/profile-img.jpg" class="img-fluid" alt="">
-          </div>
-          <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
-            <h3>UI/UX Designer &amp; Web Developer.</h3>
-            <p class="fst-italic">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua.
-            </p>
-            <div class="row">
-              <div class="col-lg-6">
-                <ul>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Birthday:</strong> <span>1 May 1995</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Website:</strong> <span>www.example.com</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>+123 456 7890</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span>New York, USA</span></li>
-                </ul>
-              </div>
-              <div class="col-lg-6">
-                <ul>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Age:</strong> <span>30</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>Master</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>PhEmailone:</strong> <span>email@example.com</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Freelance:</strong> <span>Available</span></li>
-                </ul>
-              </div>
-            </div>
-            <p>
-              Officiis eligendi itaque labore et dolorum mollitia officiis optio vero. Quisquam sunt adipisci omnis et ut. Nulla accusantium dolor incidunt officia tempore. Et eius omnis.
-              Cupiditate ut dicta maxime officiis quidem quia. Sed et consectetur qui quia repellendus itaque neque. Aliquid amet quidem ut quaerat cupiditate. Ab et eum qui repellendus omnis culpa magni laudantium dolores.
-            </p>
-          </div>
-        </div> -->
-
-      </div>
-    </section><!-- End About Section -->
+   <!-- ======= Resume Section ======= -->
   
-
-
-    <!-- ======= Resume Section ======= -->
-    <section id="resume" class="resume">
+   <!-- <section id="about" class="resume">
       <div class="container">
-
         <div class="section-title">
-          <h2>Resume</h2>
-          <p></p>
+          <h2>Protal</h2>       
+         
         </div>
-
       </div>
-    </section><!-- End Resume Section -->
+    </section> -->
+    <!-- End Resume Section -->
+
 
     <!-- ======= Portfolio Section ======= -->
     <section id="portfolio" class="portfolio section-bg">
       <div class="container">
-
         <div class="section-title">
-          <h2>Portfolio</h2>
-          <p></p>
+          <h2>Portal</h2>
+            <form action="portalform.php" method="post">
+            <div class="row">
+            <div class="col-xl-6">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="bus_name"  placeholder=" Business Name" required>  
+                </div><br>
+                <div class="form-group">
+                  <input type="text" class="form-control" name="bus_adrs"  placeholder="Address" required>   
+                </div><br>
+                <div class="form-group">
+                  <input type="text" class="form-control" name="bus_phone"  placeholder="Phone Number" required>   
+                </div><br>
+                <div class="form-group">
+                  <input type="text" class="form-control" name="bus_offphone"  placeholder="Official Number" required>   
+                </div><br>
+                <div class="form-group">
+                  <input type="text" class="form-control" name="bus_fax"  placeholder="fax Number" required>   
+                </div><br>
+                <div class="form-group">
+                  <input type="email" class="form-control" name="bus_email"  placeholder="Email" required>   
+                </div><br> 
+                <div class="form-group">
+                  <input type="text" class="form-control" name="bus_web"  placeholder="Website" required>   
+                </div><br>
+                <div class="form-group">
+                  <input type="text" class="form-control" name="bus_status"  placeholder="Status" required>   
+                </div>
+                <div class="form-group">                          
+                  <div style="margin: 10px;"><label>Upload logo</label></div>
+                  <input type="file"  class="form-control" name="image">             
+                </div> 
+                  <!-- <div class="form-group">
+                    <label for=""></label>
+                    <textarea class="form-control" name="cat_desc" rows="5" style="resize:none;" placeholder="Description"></textarea>
+                  </div>    -->
+                  <button style="margin-top: 10px;" type="submit" class="btn btn-primary shadow-2 mb-4" name="btn_insert">Submit</button>
+            </div>
+            </div>
+            </form>                 
+         </div>
         </div>
 
       </div>
     </section><!-- End Portfolio Section -->
 
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+      <div class="container">
+        <div class="section-title">
+          <h2>Portfolio</h2>
+          <p></p>
+        </div>
+      
+        <div class="row">
+        <?php
+          $sql = "SELECT * FROM bdd";
+          $result =$conn->query($sql) or die("Query Unsuccessful.");
+          if(mysqli_num_rows($result) > 0)  {
+            $row = mysqli_fetch_assoc($result)
+        ?>
+          <div class="col-lg-4" data-aos="fade-right">
+            <img src="<?php echo $row['b_logo']; ?>" class="img-fluid" alt="">
+          </div>
+          <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
+            <h3><?php echo $row['b_name']; ?></h3>
+          
+            <div class="row">
+           
+              <div class="col-lg-6">
+                <ul>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Website:</strong> <span></span><?php echo $row['b_website']; ?></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Address:</strong> <span><?php echo $row['b_address']; ?></span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span><?php echo $row['b_phoneno']; ?></span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>offical No:</strong> <span><?php echo $row['b_officialno']; ?></span></li>
+                </ul>             
+              </div>
+              <div class="col-lg-6">
+                <ul>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span></span><?php echo $row['b_email']; ?></span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Fax No:</strong> <span></span><?php echo $row['b_faxno']; ?></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Status:</strong> <span></span><?php echo $row['b_status']; ?></li>
+                  <!-- <li><i class="bi bi-chevron-right"></i> <strong>Freelance:</strong> <span></span></li> -->
+                </ul>
+                <a href='edit.php?id=<?php echo $row['b_id']; ?>'>Edit</a>
+              </div>
+            </div>
+            <p>   
+            </p>
+          </div>
+        </div>
+        <?php }?>
+      </div>
+    </section><!-- End About Section -->
+  
+   
+
+   
+
     <!-- ======= Services Section ======= -->
-    <section id="services" class="services">
+    <!-- <section id="services" class="services">
       <div class="container">
 
         <div class="section-title">
           <h2>Services</h2>
-          <!-- <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+           <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
         </div>
 
         <div class="row">
@@ -145,10 +199,11 @@ require("conn.php");
             <h4 class="title"><a href="">Eiusmod Tempor</a></h4>
             <p class="description">Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi</p>
           </div>
-        </div> -->
+        </div> 
 
       </div>
-    </section><!-- End Services Section -->
+    </section> -->
+    <!-- End Services Section -->
 
 
 

@@ -1,7 +1,5 @@
 <?php
 
-// if( $_SESSION["uemail"] !="")
-// {
 
 $sql = "SELECT * FROM user";
 $result =$conn->query($sql) or die("Query Unsuccessful.");
@@ -31,6 +29,7 @@ if(mysqli_num_rows($result) > 0)  {
   <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
@@ -48,6 +47,7 @@ if(mysqli_num_rows($result) > 0)  {
 
       <div class="profile">
         <img src="<?php echo $row['uimage']; ?>" alt="" class="img-fluid rounded-circle">
+
         <h1 class="text-light"><a href="userprofile.php"><?php echo $row['uname']; ?></a></h1>
         <!-- <div class="social-links mt-3 text-center">
           <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
@@ -61,11 +61,11 @@ if(mysqli_num_rows($result) > 0)  {
       <nav id="navbar" class="nav-menu navbar">
         <ul>
           <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
-          <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
-          <li><a href="#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
-          <li><a href="#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portfolio</span></a></li>
-          <li><a href="#services" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Services</span></a></li>
+          <li><a href="#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portal</span></a></li>
+          <!-- <li><a href="#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Portal</span></a></li> -->
+          <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>Portfolio</span></a></li>
           <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
+          <li><a href="logout.php" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Logout</span></a></li>
         </ul>
       </nav><!-- .nav-menu -->
     </div>
@@ -74,9 +74,4 @@ if(mysqli_num_rows($result) > 0)  {
   <?php 
     }
 }
-// }
-// else
-// {
-//     header("location:index.php");
-// }
    ?>
