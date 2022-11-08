@@ -1,17 +1,15 @@
 <?php
+// $sql = "SELECT * FROM user";
+// $result =$conn->query($sql) or die("Query Unsuccessful.");
 
-
-$sql = "SELECT * FROM user";
-$result =$conn->query($sql) or die("Query Unsuccessful.");
-
-if(mysqli_num_rows($result) > 0)  {
-    while($row = mysqli_fetch_assoc($result)){
+// if(mysqli_num_rows($result) > 0)  {
+//     while($row = mysqli_fetch_assoc($result)){
 ?>
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Business Directory-<?php echo $row['uname']; ?></title>
+  <title><?=$_SESSION['name']?> | Business Directory</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -46,9 +44,9 @@ if(mysqli_num_rows($result) > 0)  {
     <div class="d-flex flex-column">
 
       <div class="profile">
-        <img src="<?php echo $row['uimage']; ?>" alt="" class="img-fluid rounded-circle">
+        <img src="" alt="<?=$_SESSION['image']?>" class="img-fluid rounded-circle">
 
-        <h1 class="text-light"><a href="userprofile.php"><?php echo $row['uname']; ?></a></h1>
+        <h1 class="text-light"><a href="userprofile.php"><?=$_SESSION['name']?></a></h1>
         <!-- <div class="social-links mt-3 text-center">
           <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
           <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
@@ -72,6 +70,6 @@ if(mysqli_num_rows($result) > 0)  {
   </header>
   
   <?php 
-    }
-}
+//     }
+// }
    ?>

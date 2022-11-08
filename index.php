@@ -1,54 +1,44 @@
 <?php
-// Initialize the session
+include 'conn.php';
 session_start();
-// $_SESSION["uemail"] !="";
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
-// Include config file
-require ("conn.php");
- 
-// Check if the user is already logged in, if yes then redirect him to welcome page
-// if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-//     header("location: userprofile.php");
-//     exit;
-// }
-//  Include config file
-if(isset($_POST["btn_login"]))
-{
-  $email = $_POST["email"];
-  $paswrd = $_POST["password"];
+    $user_email = $_POST['email'];
+    $pass = $_POST['password'];
 
-  $sql_query ="SELECT * FROM user WHERE uemail= '$email' ";
-  $result=$conn->query($sql_query);
-  if($result->num_rows > 0)
-  {
-    while($row = $result->fetch_assoc())
+    $sql = "SELECT * FROM user WHERE uemail = '$user_email' AND upassword = '$pass' ";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_array($result);
+
+    if($row == 0 )
     {
-      if($email == $row["uemail"] && $paswrd == $row["upassword"])
-      {
-        $_SESSION['user_email'] = $email;
-
-        // $sql_query ="SELECT * FROM bdd ";
-        // $result=$conn->query($sql_query);
-
-        // $_SESSION['id'] = $id;
-        // $_SESSION['fname'] = $fname;
-        // $_SESSION['pp'] = $pp;
-        // $_SESSION['pp'] = $pp;
-        // $_SESSION['pp'] = $pp;
-        
-          
-          header("location: userprofile.php");
-      }
-      else
+        // echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+        // Plz Insert Correct  <strong>email</strong> and <strong>Password</strong> .
+        // </div>';
+    }
+    else
+    {
+        if($row['access_level'] == 1)
         {
-          echo '<script> alert("Invalid Password");</script>';
+            $_SESSION["email"] = $row['uemail'];
+            $_SESSION["name"] = $row['uname'];
+            $_SESSION["id"] = $row['u_id'];
+            $_SESSION["image"] = $row['uimage'];
+            $_SESSION["role"] = $row['access_level'];
+            header('location:dashboard/welcome.php');
         }
-    }   
-  }
-  else
-   {
-      echo '<script> alert("Invalid Email");</script>';
-   }
+        else
+        {
+            $_SESSION["email"] = $row['uemail'];
+            $_SESSION["name"] = $row['uname'];
+            $_SESSION["id"] = $row['u_id'];
+            $_SESSION["image"] = $row['uimage'];
+            $_SESSION["local_role"] = $row['access_level'];
+            header('location:userprofile.php');
+        }
+    }
+
+    
 
 }
 ?>

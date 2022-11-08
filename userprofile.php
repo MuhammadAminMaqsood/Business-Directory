@@ -2,8 +2,7 @@
 session_start();
 require("conn.php");
 
-
-$user = $_SESSION['user_email'];
+$user = $_SESSION["email"];
 if($user == true)
 {
 
@@ -25,7 +24,7 @@ if($user == true)
 
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
-    <div  style="margin-bottom: 90px;" class="hero-container" data-aos="fade-in">
+    <div  style="margin-bottom: 80px; margin-right:110px;" class="hero-container" data-aos="fade-in">
       <?php
     $sql = "SELECT * FROM user";
 $result =$conn->query($sql) or die("Query Unsuccessful.");
@@ -33,7 +32,7 @@ $result =$conn->query($sql) or die("Query Unsuccessful.");
 if(mysqli_num_rows($result) > 0)  {
     $row = mysqli_fetch_assoc($result)
       ?>
-      <h1><?php echo $row['uname']; ?></h1>
+      <h1 style="font-size:40px;"><?=$_SESSION['name']?></h1>
       <p>You're <span class="typed" data-typed-items="Business Men, Designer, Developer, Freelancer,Photographer"></span></p>
       <?php }?>
     </div>
@@ -113,13 +112,16 @@ if(mysqli_num_rows($result) > 0)  {
           <h2>Portfolio</h2>
           <p></p>
         </div>
-      
+        
         <div class="row">
+          
         <?php
-          $sql = "SELECT * FROM bdd";
+          $u_id = $_SESSION["id"];
+          $sql = "SELECT * FROM bdd WHERE users_id = '$u_id'";
           $result =$conn->query($sql) or die("Query Unsuccessful.");
           if(mysqli_num_rows($result) > 0)  {
             $row = mysqli_fetch_assoc($result)
+            
         ?>
           <div class="col-lg-4" data-aos="fade-right">
             <img src="<?php echo $row['b_logo']; ?>" class="img-fluid" alt="">
@@ -143,15 +145,15 @@ if(mysqli_num_rows($result) > 0)  {
                   <li><i class="bi bi-chevron-right"></i> <strong>Fax No:</strong> <span></span><?php echo $row['b_faxno']; ?></li>
                   <li><i class="bi bi-chevron-right"></i> <strong>Status:</strong> <span></span><?php echo $row['b_status']; ?></li>
                   <!-- <li><i class="bi bi-chevron-right"></i> <strong>Freelance:</strong> <span></span></li> -->
-                </ul>
-                <a href='edit.php?id=<?php echo $row['b_id']; ?>'>Edit</a>
-              </div>
+                </ul>     
+              </div>          
             </div>
-            <p>   
-            </p>
+            <a class="btn btn-primary shadow-2 mb-4" href='edit.php?id=<?php echo $row['id'];?>'>Edit</a>        
           </div>
         </div>
-        <?php }?>
+        <?php }
+        
+        ?>
       </div>
     </section><!-- End About Section -->
   
@@ -282,14 +284,14 @@ if(mysqli_num_rows($result) > 0)  {
   <footer id="footer">
     <div class="container">
       <div class="copyright">
-        &copy; Copyright <strong><span>iPortfolio</span></strong>
+      <strong><span></span></strong> &copy; Copyright
       </div>
       <div class="credits">
         <!-- All the links in the footer should remain intact. -->
         <!-- You can delete the links only if you purchased the pro version. -->
         <!-- Licensing information: https://bootstrapmade.com/license/ -->
         <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/ -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        Designed by <a href="">Amin Maqsood</a>
       </div>
     </div>
   </footer><!-- End  Footer -->
