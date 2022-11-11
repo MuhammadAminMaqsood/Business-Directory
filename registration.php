@@ -6,7 +6,25 @@
 	  $email = $_POST['email'];
 	  $contact = $_POST['Contact'];
 	  $pass = $_POST['password'];
-      $img = $_POST['image'];
+      $img =  $_FILES['image'];
+
+      $errors= array();
+      $file_name = $_FILES['image']['name'];
+      $file_tmp =$_FILES['image']['tmp_name'];
+      
+      //use concatenate to timestamp with image
+      $t=time();
+      $print_file_name = "images/".$t.$file_name;
+      
+      if(empty($errors) == true)
+      {
+           move_uploaded_file($file_tmp,"images/".$t.$file_name);
+       }
+       else
+       {
+          print_r($errors);
+       }
+      
   
   $sql ="INSERT INTO user(uname,uemail,ucontact,upassword,uimage) VALUES('$name','$email','$contact','$pass',' $img')";
   $result = mysqli_query($conn, $sql) or die("Query Unsuccessful.");

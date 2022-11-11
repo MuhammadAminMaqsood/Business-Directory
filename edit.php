@@ -29,7 +29,7 @@
             <div class="row">
             <div class="col-xl-6">
                 <div class="form-group">
-                  <input type="text" class="form-control" name="bus_name"  placeholder=" Business Name" value="<?php echo $row['b_name']; ?>" required>  
+                  <input type="text" class="form-control" name="bus_name"  placeholder="Business Name" value="<?php echo $row['b_name']; ?>" required>  
                 </div>
                 <div class="form-group">
                   <input type="text" class="form-control" name="bus_adrs"  placeholder="Address" value="<?php echo $row['b_address']; ?>" required>   

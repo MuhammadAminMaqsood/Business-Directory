@@ -124,7 +124,7 @@ if(mysqli_num_rows($result) > 0)  {
             
         ?>
           <div class="col-lg-4" data-aos="fade-right">
-            <img src="<?php echo $row['b_logo']; ?>" class="img-fluid" alt="">
+            <img src="<?php echo"images/".$row['b_logo']; ?>" class="img-fluid" width="200px" alt="image">
           </div>
           <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
             <h3><?php echo $row['b_name']; ?></h3>
@@ -151,7 +151,14 @@ if(mysqli_num_rows($result) > 0)  {
             <a class="btn btn-primary shadow-2 mb-4" href='edit.php?id=<?php echo $row['id'];?>'>Edit</a>        
           </div>
         </div>
-        <?php }
+        <?php }else{ ?>
+          <div class="col-lg-6">
+          <ul>
+          <h3>No Record Available</h3> 
+          </ul>             
+        </div>
+<?php 
+        }
         
         ?>
       </div>

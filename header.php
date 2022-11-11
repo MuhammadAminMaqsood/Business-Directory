@@ -44,8 +44,8 @@
     <div class="d-flex flex-column">
 
       <div class="profile">
-        <img src="" alt="<?=$_SESSION['image']?>" class="img-fluid rounded-circle">
-
+        <img src="images/.<?=$_SESSION['image']?>" alt="image" width="200px" class="img-fluid rounded-circle">
+      
         <h1 class="text-light"><a href="userprofile.php"><?=$_SESSION['name']?></a></h1>
         <!-- <div class="social-links mt-3 text-center">
           <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>

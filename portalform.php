@@ -1,12 +1,5 @@
 <?php 
 session_start();
-$user = $_SESSION["email"];
-if($user == true)
-{
-
-}else{
-  header('location:index.php');
-}
 require("conn.php");
       if(isset($_POST["btn_insert"]))
       {      
@@ -23,7 +16,7 @@ require("conn.php");
 
       
       $sql ="INSERT INTO bdd(b_name,b_address,b_phoneno,b_officialno,b_faxno,b_email,b_website,b_status,b_logo,users_id)
-                  VALUES('$b_name','$b_email','$b_phone','$b_offphone','$b_fax','$b_email','$b_web','$b_status','$ $img','$id')";
+                  VALUES('$b_name','$b_email','$b_phone','$b_offphone','$b_fax','$b_email','$b_web','$b_status','$img','$id')";
       $result = mysqli_query($conn, $sql) or die("Query Unsuccessful.");
         
       header("location: userprofile.php");
