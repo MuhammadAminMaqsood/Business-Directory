@@ -33,7 +33,7 @@ if(mysqli_num_rows($result) > 0)  {
     $row = mysqli_fetch_assoc($result)
       ?>
       <h1 style="font-size:40px;"><?=$_SESSION['name']?></h1>
-      <p>You're <span class="typed" data-typed-items="Business Men, Designer, Developer, Freelancer,Photographer"></span></p>
+      <p>You're <span class="typed" data-typed-items="Business Men, Designer, Developer, Freelancer, Photographer"></span></p>
       <?php }?>
     </div>
   </section>
@@ -56,10 +56,10 @@ if(mysqli_num_rows($result) > 0)  {
 
     <!-- ======= Portfolio Section ======= -->
     <section id="portfolio" class="portfolio section-bg">
-      <div class="container">
+      <div class="container">     
         <div class="section-title">
-          <h2>Portal</h2>
-            <form action="portalform.php" method="post">
+          <h2>Business Portal</h2>
+            <form action="portalform.php" method="post" enctype="multipart/form-data">
             <div class="row">
             <div class="col-xl-6">
                 <div class="form-group">
@@ -100,7 +100,6 @@ if(mysqli_num_rows($result) > 0)  {
             </form>                 
          </div>
         </div>
-
       </div>
     </section><!-- End Portfolio Section -->
 
@@ -109,7 +108,7 @@ if(mysqli_num_rows($result) > 0)  {
     <section id="about" class="about">
       <div class="container">
         <div class="section-title">
-          <h2>Portfolio</h2>
+          <h2>Business Portfolio</h2>
           <p></p>
         </div>
         
@@ -124,7 +123,7 @@ if(mysqli_num_rows($result) > 0)  {
             
         ?>
           <div class="col-lg-4" data-aos="fade-right">
-            <img src="<?php echo"images/".$row['b_logo']; ?>" class="img-fluid" width="200px" alt="image">
+            <img src="<?php echo $row['b_logo'];?>" class="img-fluid"  alt="image">
           </div>
           <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
             <h3><?php echo $row['b_name']; ?></h3>
@@ -306,6 +305,7 @@ if(mysqli_num_rows($result) > 0)  {
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
+  
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

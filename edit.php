@@ -25,7 +25,7 @@
       <div class="container">
         <div  class="section-title">
           <h2 style="margin-bottom:20px;">Edit-Portal</h2>
-            <form action="editdata.php" method="post">
+            <form action="editdata.php" method="post" enctype="multipart/form-data">
             <div class="row">
             <div class="col-xl-6">
                 <div class="form-group">
@@ -54,7 +54,8 @@
                 </div>
                 <div class="form-group">                          
                   <div style="margin:5px;"><label>Upload logo</label></div>
-                  <input type="file"  class="form-control" name="image" value="<?php echo $row['b_logo']; ?>">             
+                  <input type="file"  class="form-control" name="old_image" value="<?php echo $row['b_logo']; ?>">   
+                  <input type="hidden"  class="form-control" name="new_imaga" value="">           
                 </div> 
                   <!-- <div class="form-group">
                     <label for=""></label>

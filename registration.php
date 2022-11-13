@@ -2,41 +2,45 @@
   require ("conn.php");
   if(isset($_POST["submit"]))
 	{      
-	  $name = $_POST['name'];
-	  $email = $_POST['email'];
-	  $contact = $_POST['Contact'];
-	  $pass = $_POST['password'];
-      $img =  $_FILES['image'];
+       $name = $_POST['name'];
+	   $email = $_POST['email'];
+	   $contact = $_POST['Contact'];
+       $pass = $_POST['password'];
+       $image = $_FILES['image'];
 
-      $errors= array();
-      $file_name = $_FILES['image']['name'];
-      $file_tmp =$_FILES['image']['tmp_name'];
-      
-      //use concatenate to timestamp with image
-      $t=time();
-      $print_file_name = "images/".$t.$file_name;
-      
-      if(empty($errors) == true)
-      {
-           move_uploaded_file($file_tmp,"images/".$t.$file_name);
-       }
-       else
-       {
-          print_r($errors);
-       }
-      
+       if(isset($_FILES['image'])){
+
+        $errors= array();
+        $file_name = $_FILES['image']['name'];
+        $file_tmp =$_FILES['image']['tmp_name'];
+        $file_size =$_FILES['image']['size'];
+        $file_type =$_FILES['image']['type'];
   
-  $sql ="INSERT INTO user(uname,uemail,ucontact,upassword,uimage) VALUES('$name','$email','$contact','$pass',' $img')";
+        //use concatenate to timestamp with image
+  
+      $print_file = "images/".$file_name;
+
+       if(empty($errors) == true)
+          {
+              move_uploaded_file($file_tmp,"images/".$file_name);
+          }
+          else
+          {
+              print_r($errors);
+          }
+      }
+  
+  $sql ="INSERT INTO user(uname,uemail,ucontact,upassword,uimage) VALUES('$name','$email','$contact','$pass','$print_file')";
   $result = mysqli_query($conn, $sql) or die("Query Unsuccessful.");
   
  if ($result){
-  
   header("Location:index.php");
  }
  else{
 	  echo "Failed";
   }
-  }    
+  }  
+  
    mysqli_close($conn);		
 ?>
  
@@ -55,7 +59,7 @@
     <meta name="author" content="CodedThemes"/>
 
     <!-- Favicon icon -->
-    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="assets/images/favicon.png" type="image/x-icon">
     <!-- fontawesome icon -->
     <link rel="stylesheet" href="assets/fonts/fontawesome/css/fontawesome-all.min.css">
     <!-- animation css -->
@@ -86,7 +90,7 @@
                         <i class="feather icon-user-plus auth-icon"></i>
                     </div>
                     <!-- <h3 class="mb-4">Sign up</h3> -->
-                    <form action="" method="post">
+                    <form action="" method="post" enctype="multipart/form-data">
                        
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" name="name" value="" placeholder="Full Name" required>
@@ -107,7 +111,8 @@
                      
                          <div class="form-group text-left">                        
                             <div class="mb-3">
-		                        <label class="form-label">Upload Image</label> <input type="file"  class="form-control" name="image" required>
+		                        <label class="form-label">Upload Image</label> 
+                                <input type="file"  class="form-control" name="image" required>
                             </div>
                         </div> 
                         <!-- <div class="form-group text-left">
@@ -123,10 +128,12 @@
             </div>
         </div>
     </div>
+   
 
     <!-- Required Js -->
     <script src="assets/js/vendor-all.min.js"></script>
 	<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 </body>
 </html>

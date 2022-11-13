@@ -15,7 +15,7 @@
 
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="assets/img/favicon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -42,10 +42,10 @@
 
 <header id="header">
     <div class="d-flex flex-column">
-
+    <img src="<?=$_SESSION['image']?>"
+    style="width:150px; height:150px; margin:auto; margin-top:10px; margin-bottom:5px;" alt="image"  class="img-fluid rounded-circle">
       <div class="profile">
-        <img src="images/.<?=$_SESSION['image']?>" alt="image" width="200px" class="img-fluid rounded-circle">
-      
+    
         <h1 class="text-light"><a href="userprofile.php"><?=$_SESSION['name']?></a></h1>
         <!-- <div class="social-links mt-3 text-center">
           <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
