@@ -1,6 +1,15 @@
 <?php 
 session_start();
 require("conn.php");
+$user = $_SESSION["email"];
+if($user == true)
+{
+
+}
+else
+{
+  header('location:index.php');
+}
       if(isset($_POST["btn_insert"]))
       {      
         $b_name = $_POST['bus_name'];

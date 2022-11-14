@@ -6,7 +6,8 @@ $user = $_SESSION["email"];
 if($user == true)
 {
 
-}else{
+}
+else{
   header('location:index.php');
 }
 ?>

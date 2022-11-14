@@ -4,21 +4,28 @@ session_start();
 include_once ("../conn.php");
 if( $_SESSION["email"] !="")
 {
-    if(isset($_GET["id"]))
-   {
-     $id = $_GET["id"];
-     $sql_query_1 = "SELECT * FROM product where prdct_id = $id";
-     $result=$conn->query($sql_query_1);
-    }
+  
+     $sub_id = $_GET["id"];
+     $sql_query_1 = "SELECT * FROM user where u_id = {$sub_id}";
+     $result = mysqli_query($conn, $sql_query_1) or die("Query Unsuccessful.");
+     
+    
 
-   if(isset($_POST["btn_Delete"]))
+   if(isset($_POST["btn_update"]))
    { 
+      $uname=$_POST["uname"];
+      $uemail=$_POST["uemail"];
+      $ucontact=$_POST["ucontact"];
+      $upassword=$_POST["upassword"];
+      $uimage=$_POST["uimage"];
+      $access_level=$_POST["access_level"];
+
       
-      $sql_query ="Delete from product where prdct_id = $id;";
+      $sql_query ="UPDATE user SET `uname`='[$uname]',`uemail`='[$uemail]',`ucontact`='[$ucontact]',`upassword`='[$upassword]',`uimage`='[$uimage]',`access_level`='[ $access_level]' WHERE u_id = $id";
       if($conn->query($sql_query))
       {
-          echo '<script> alert("Record Delete")</script>';
-          header("location:product.php");
+          echo '<script> alert("Record Added")</script>';
+          header("location:category.php");
       }
       else 
       {
@@ -33,7 +40,7 @@ if( $_SESSION["email"] !="")
 <html lang="en">
 
 <head>
-    <title>Arts Admin Panel</title>
+    <title>Admin Panel | Business Directory</title>
 
     <!-- Meta -->
     <meta charset="utf-8">
@@ -70,7 +77,7 @@ include("Adminheader.php");
                             <div class="row align-items-center">
                                 <div class="col-md-12">
                                     <div class="page-header-title">
-                                        <h3 class="m-b-10">Delete Product</h3>
+                                        <h3 class="m-b-10">Edit User</h3>
                                     </div>
                                     <ul class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="welcome.php"><i class="feather icon-home"></i></a></li>
@@ -85,47 +92,39 @@ include("Adminheader.php");
                         <div class="page-wrapper">
                             <!-- [ Main Content ] start -->
                           <?php
-                            if($result-> num_rows > 0)
-                            {
-                                while($row = $result->fetch_assoc())
-                                {
+                           if(mysqli_num_rows($result) > 0)  {
+                            while($row = mysqli_fetch_assoc($result)){
                                     ?>
                                     <form action="" method="post">
                                     <div class="row">
                                     <div class="col-xl-7">
                                         <div class="form-group">
-                                          <input type="text" class="form-control" name="prdct_name" aria-describedby="helpId" 
-                                          value="<?php echo $row["prdct_name"];?>">   
+                                          <input type="text" class="form-control" name="uname" aria-describedby="helpId" 
+                                          placeholder="Enter Name" value="<?php echo $row["uname"];?>">   
                                         </div>
-
                                         <div class="form-group">
-                                          <input type="text" class="form-control" name="prdct_qty" aria-describedby="helpId" 
-                                          value="<?php echo $row["prdct_qty"];?>">   
+                                          <input type="text" class="form-control" name="uemail" aria-describedby="helpId" 
+                                          placeholder="Enter Email" value="<?php echo $row["uemail"];?>">   
                                         </div>
-
                                         <div class="form-group">
-                                          <input type="text" class="form-control" name="prdct_price" aria-describedby="helpId" 
-                                          value="<?php echo $row["prdct_price"];?>">   
+                                          <input type="text" class="form-control" name="ucontact" aria-describedby="helpId" 
+                                          placeholder="Enter Contact" value="<?php echo $row["ucontact"];?>">   
                                         </div>
-
                                         <div class="form-group">
-                                          <input type="text" class="form-control" name="prdct_img" aria-describedby="helpId" 
-                                          value="<?php echo $row["prdct_img"];?>">   
+                                          <input type="text" class="form-control" name="upassword" aria-describedby="helpId" 
+                                          placeholder="Enter Password" value="<?php echo $row["upassword"];?>">   
                                         </div>
-
                                         <div class="form-group">
-                                          <input type="text" class="form-control" name="prdct_cat" aria-describedby="helpId" 
-                                          value="<?php echo $row["prdct_cat"];?>">   
+                                          <input type="text" class="form-control" name="uimage" aria-describedby="helpId" 
+                                          placeholder="Enter Image" value="<?php echo $row["uimage"];?>">   
                                         </div>
-        
-                                          <div class="form-group">
-                                            <label for="">Category Description</label>
-                                            <textarea class="form-control" name="prdct_desc" rows="5" style="resize:none;" placeholder="">
-                                            <?php echo $row["prdct_desc"];?>
-                                            </textarea>
-                                          </div>   
-                                            <a class="btn btn-primary shadow-2 mb-4" href="product.php">No</a>
-                                          <button type="submit" class="btn btn-primary shadow-2 mb-4" name="btn_Delete">Yes</button>
+                                        <div class="form-group">
+                                          <input type="text" class="form-control" name="access_level" aria-describedby="helpId" 
+                                          placeholder="Enter access level" value="<?php echo $row["access_level"];?>">   
+                                        </div>
+                
+                                            <a class="btn btn-primary shadow-2 mb-4" href="category.php">Back</a>
+                                          <button type="submit" class="btn btn-primary shadow-2 mb-4" name="btn_update">Updata</button>
                                     </div>
                                     </form>
                                     <?php

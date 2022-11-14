@@ -12,9 +12,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     if($row == 0 )
     {
-        // echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-        // Plz Insert Correct  <strong>email</strong> and <strong>Password</strong> .
-        // </div>';
+        echo '<center><div class="alert alert-danger alert-dismissible fade show" role="alert">
+        Please Insert Correct <strong>email</strong> and <strong>Password</strong> !
+        </div></center>';
     }
     else
     {

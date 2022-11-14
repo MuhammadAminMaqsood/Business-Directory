@@ -5,7 +5,7 @@ include_once ("../conn.php");
 if( $_SESSION["email"] !="")
 {
 
-  $sql_query ="SELECT * FROM category ";
+  $sql_query ="SELECT * FROM user";
   $result=$conn->query($sql_query);
 
   ?>
@@ -13,7 +13,7 @@ if( $_SESSION["email"] !="")
 <html lang="en">
 
 <head>
-    <title>Arts Admin Panel</title>
+    <title>Admin Panel | Business Directory</title>
 
     <!-- Meta -->
     <meta charset="utf-8">
@@ -50,7 +50,7 @@ include("Adminheader.php");
                             <div class="row align-items-center">
                                 <div class="col-md-12">
                                     <div class="page-header-title">
-                                        <h3 class="m-b-10">Category</h3>
+                                        
                                     </div>
                                     <ul class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="welcome.php"><i class="feather icon-home"></i></a></li>
@@ -69,16 +69,20 @@ include("Adminheader.php");
                                 <div class="col-xl-12">
                                     <div class="card">
                                         <div class="card-header">
-                                            <h4><a href="AddCategory.php">Add Category</a></h4>          
+                                            <h4><a href="">User Accounts</a></h4>          
                                         </div>
                                         <div class="card-block table-border-style">
                                             <div class="table-responsive">
                                                 <table class="table">
                                                     <thead>
                                                         <tr>
-                                                            <th>Category Id</th>
-                                                            <th>Category  Name</th>
-                                                            <th>Category Description</th>
+                                                            
+                                                            <th>User Name</th>
+                                                            <th>User Email</th>
+                                                            <th>User Contact</th>
+                                                            <th>User Password</th>
+                                                            <th>User Image</th>
+                                                            <th>Assess_level</th>
                                                             <th></th>
                                                         </tr>
                                                     </thead>
@@ -90,11 +94,15 @@ include("Adminheader.php");
                                                           { 
                                                             ?>
                                                                 <tr>
-                                                                <th><?php echo $row["cat_id"];?></th>
-                                                                <td><?php echo $row["cat_name"];?></td>
-                                                                <td><?php echo $row["cat_desc"];?></td>
-                                                                <td><a href="EditCategory.php?id=<?php echo $row["cat_id"];?>">Edit</a> | 
-                                                                    <a href="DeleteCategory.php?id=<?php echo $row["cat_id"];?>">Delete</a></td>
+                                                            
+                                                                <td><?php echo $row["uname"];?></td>
+                                                                <td><?php echo $row["uemail"];?></td>
+                                                                <td><?php echo $row["ucontact"];?></td>
+                                                                <td><?php echo $row["upassword"];?></td>
+                                                                <td><?php echo $row["uimage"];?></td>
+                                                                <td><?php echo $row["access_level"];?></td>
+                                                                <td><a href="EditCategory.php?id=<?php echo $row["u_id"];?>">Edit</a> | 
+                                                                    <a href="DeleteCategory.php?id=<?php echo $row["u_id"];?>">Delete</a></td>
                                                                 </tr>
                                                              <?php
                                                           }
