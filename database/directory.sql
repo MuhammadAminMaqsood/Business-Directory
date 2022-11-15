@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 08, 2022 at 10:51 AM
+-- Generation Time: Nov 15, 2022 at 11:31 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.6
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `bdd` (
-  `id` int(11) NOT NULL,
+  `b_id` int(11) NOT NULL,
   `b_name` varchar(100) NOT NULL,
   `b_address` varchar(200) NOT NULL,
   `b_phoneno` int(50) NOT NULL,
@@ -45,11 +45,9 @@ CREATE TABLE `bdd` (
 -- Dumping data for table `bdd`
 --
 
-INSERT INTO `bdd` (`id`, `b_name`, `b_address`, `b_phoneno`, `b_officialno`, `b_faxno`, `b_email`, `b_website`, `b_status`, `b_logo`, `users_id`) VALUES
-(59, 'maaz', 'Maaz@gmail.com', 2147483647, 2147483647, 46, 'Maaz@gmail.com', 'www.hghbbn.com', 'on', 'images/1667895351', 14),
-(60, 'Muhammad Amin Maqsood', 'amin@gmail.com', 266548529, 2147483647, 2654, 'amin@gmail.com', 'wwww.amin.com', 'on', '$ ', 13),
-(61, 'Muhammad Amin Maqsood', 'amin@gmail.com', 266548529, 2147483647, 2654, 'amin@gmail.com', 'wwww.amin maqsood.com', 'on', '$ ', 13),
-(62, 'Muhammad Amin Maqsood', 'amin@gmail.com', 266548529, 2147483647, 2654, 'amin@gmail.com', 'wwww.amin.com', 'on', '$ ', 13);
+INSERT INTO `bdd` (`b_id`, `b_name`, `b_address`, `b_phoneno`, `b_officialno`, `b_faxno`, `b_email`, `b_website`, `b_status`, `b_logo`, `users_id`) VALUES
+(76, 'Gosari shop', 'Gosari@gmail', 2147483647, 2147483647, 46, 'Gosari@gmail', 'www.Gosari.com', 'on', 'images/download.jfif', 39),
+(77, 'Gosari shop', 'amin@gmail.com', 2147483647, 2147483647, 2564, 'amin@gmail.com', 'www.hghbbn.com', 'on', 'images/193737920_4057185037704729_810899366465142288_n.png', 41);
 
 -- --------------------------------------------------------
 
@@ -72,9 +70,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`u_id`, `uname`, `uemail`, `ucontact`, `upassword`, `uimage`, `access_level`) VALUES
-(13, 'Muhammad Amin', 'amin@gmail.com', 2147483647, '1234', ' 24x24.png', 2),
-(14, 'maaz', 'maaz@gmail.com', 2147483647, 'karachi', ' 24x24.png', 2),
-(15, 'saad', 'saad@gmail.com', 2147483647, '$2y$10$26zPXtma0eRpfJc.8oCssOF8RDt1NhDKLBy9lUglRM.Egp0BNzWR2', ' 24x24.png', 0);
+(42, 'Muhammad Amin', 'admin@gmail.com', 236, 'admin', 'images/2cd216103829407.5f560402aa8e0.png', 1);
 
 --
 -- Indexes for dumped tables
@@ -84,8 +80,7 @@ INSERT INTO `user` (`u_id`, `uname`, `uemail`, `ucontact`, `upassword`, `uimage`
 -- Indexes for table `bdd`
 --
 ALTER TABLE `bdd`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`users_id`) USING BTREE;
+  ADD PRIMARY KEY (`b_id`);
 
 --
 -- Indexes for table `user`
@@ -101,23 +96,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `bdd`
 --
 ALTER TABLE `bdd`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `b_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `u_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `bdd`
---
-ALTER TABLE `bdd`
-  ADD CONSTRAINT `bdd_ibfk_1` FOREIGN KEY (`users_id`) REFERENCES `user` (`u_id`);
+  MODIFY `u_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
