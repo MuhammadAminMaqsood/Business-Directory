@@ -1,48 +1,3 @@
-<?php
-include 'conn.php';
-session_start();
-if ($_SERVER['REQUEST_METHOD'] == "POST") {
-
-    $user_email = $_POST['email'];
-    $pass = $_POST['password'];
-
-    $sql = "SELECT * FROM user WHERE uemail = '$user_email' AND upassword = '$pass' ";
-    $result = mysqli_query($conn, $sql);
-    $row = mysqli_fetch_array($result);
-
-    if($row == 0 )
-    {
-        echo '<center><div class="alert alert-danger alert-dismissible fade show" role="alert">
-        Please Insert Correct <strong>email</strong> and <strong>Password</strong> !
-        </div></center>';
-    }
-    else
-    {
-        if($row['access_level'] == 1)
-        {
-            $_SESSION["email"] = $row['uemail'];
-            $_SESSION["name"] = $row['uname'];
-            $_SESSION["id"] = $row['u_id'];
-            $_SESSION["image"] = $row['uimage'];
-            $_SESSION["role"] = $row['access_level'];
-            header('location:dashboard/welcome.php');
-        }
-        else
-        {
-            $_SESSION["email"] = $row['uemail'];
-            $_SESSION["name"] = $row['uname'];
-            $_SESSION["id"] = $row['u_id'];
-            $_SESSION["image"] = $row['uimage'];
-            $_SESSION["local_role"] = $row['access_level'];
-            header('location:userprofile.php');
-        }
-    }
-
-    
-
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -81,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 <span class="r"></span>
             </div>
             <div class="card">
-                <form action="" method="post">
+                <form action="loginphp.php" method="post">
                     <div class="card-body text-center">
                         <h3 class="mb-4"><b>Business Directory</b></h3>
                         <div class="mb-4">

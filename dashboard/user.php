@@ -8,6 +8,7 @@ if( $_SESSION["email"] !="")
   $sql_query ="SELECT * FROM user";
   $result=$conn->query($sql_query);
 
+
   ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,7 +51,7 @@ include("Adminheader.php");
                             <div class="row align-items-center">
                                 <div class="col-md-12">
                                     <div class="page-header-title">
-                                        
+                                    <h3 style="font-weight:bold;" class="m-b-10">User Accounts</h3>
                                     </div>
                                     <ul class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="welcome.php"><i class="feather icon-home"></i></a></li>
@@ -69,14 +70,13 @@ include("Adminheader.php");
                                 <div class="col-xl-12">
                                     <div class="card">
                                         <div class="card-header">
-                                            <h4><a href="">User Accounts</a></h4>          
+                                            <!-- <h4><a href="">User Accounts</a></h4>           -->
                                         </div>
                                         <div class="card-block table-border-style">
                                             <div class="table-responsive">
                                                 <table class="table">
                                                     <thead>
-                                                        <tr>
-                                                            
+                                                         <tr>
                                                             <th>User Name</th>
                                                             <th>User Email</th>
                                                             <th>User Contact</th>
@@ -101,9 +101,10 @@ include("Adminheader.php");
                                                                 <td><?php echo $row["upassword"];?></td>
                                                                 <td><?php echo $row["uimage"];?></td>
                                                                 <td><?php echo $row["access_level"];?></td>
-                                                                <td><a href="EditCategory.php?id=<?php echo $row["u_id"];?>">Edit</a> | 
-                                                                    <a href="DeleteCategory.php?id=<?php echo $row["u_id"];?>">Delete</a></td>
-                                                                </tr>
+                                                                <td>
+                                                                    <a style="font-weight:bold; font-size:15px;" href="Edituser.php?id=<?php echo $row["u_id"];?>">Edit</a> | 
+                                                                    <a style="font-weight:bold; font-size:15px;" href="Deleteuser.php?id=<?php echo $row["u_id"];?>">Delete</a></td>
+                                                               </tr>
                                                              <?php
                                                           }
                                                         }

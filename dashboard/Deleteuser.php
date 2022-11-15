@@ -1,39 +1,12 @@
 <?php
-// Initialize the session
-session_start();
 include_once ("../conn.php");
-if( $_SESSION["email"] !="")
-{
-    if(isset($_GET["id"]))
-   {
-     $id = $_GET["id"];
-     $sql_query_1 = "SELECT * FROM category where cat_id = $id";
-     $result=$conn->query($sql_query_1);
-    }
-
-   if(isset($_POST["btn_Delete"]))
-   { 
-      
-      $sql_query ="Delete from category where cat_id = $id;";
-      if($conn->query($sql_query))
-      {
-          echo '<script> alert("Record Delete")</script>';
-          header("location:category.php");
-      }
-      else 
-      {
-          echo $conn->error;
-      }    
-
-   }
-
-
+include("Deleteuserphp.php");
   ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>Arts Admin Panel</title>
+    <title>Admin Panel</title>
 
     <!-- Meta -->
     <meta charset="utf-8">
@@ -70,7 +43,7 @@ include("Adminheader.php");
                             <div class="row align-items-center">
                                 <div class="col-md-12">
                                     <div class="page-header-title">
-                                        <h3 class="m-b-10">Delete Category</h3>
+                                        <h3 class="m-b-10">Delete User Account</h3>
                                     </div>
                                     <ul class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="welcome.php"><i class="feather icon-home"></i></a></li>
@@ -94,17 +67,24 @@ include("Adminheader.php");
                                     <div class="row">
                                     <div class="col-xl-7">
                                         <div class="form-group">
-                                          <input type="text" class="form-control" name="cat_name" aria-describedby="helpId" 
-                                          placeholder="Enter Category Name" value="<?php echo $row["cat_name"];?>">   
+                                            <label style="font-size:20px; color:black;"><?php echo $row["uname"];?></label>
                                         </div>
-        
-                                          <div class="form-group">
-                                            <label for="">Category Description</label>
-                                            <textarea class="form-control" name="cat_desc" rows="5" style="resize:none;" placeholder="">
-                                            <?php echo $row["cat_desc"];?>
-                                            </textarea>
-                                          </div>   
-                                            <a class="btn btn-primary shadow-2 mb-4" href="category.php">No</a>
+                                        <div class="form-group">
+                                            <label style="font-size:20px; color:black; "><?php echo $row["uemail"];?></label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label style="font-size:20px; color:black;"><?php echo $row["ucontact"];?></label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label style="font-size:20px; color:black;"><?php echo $row["upassword"];?></label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label style="font-size:20px; color:black;"><?php echo $row["uimage"];?></label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label style="font-size:20px; color:black;"><?php echo $row["access_level"];?></label>
+                                        </div>                                                   
+                                            <a class="btn btn-primary shadow-2 mb-4" href="user.php">No</a>
                                           <button type="submit" class="btn btn-primary shadow-2 mb-4" name="btn_Delete">Yes</button>
                                     </div>
                                     </form>
@@ -126,14 +106,6 @@ include("Adminheader.php");
 	<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/pcoded.min.js"></script>
 
-<?php
 
-}
-else
-{
-    header("location:login.php");
-}
-
-?>
 </body>
 </html>

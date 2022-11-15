@@ -28,7 +28,7 @@ else{
     <div  style="margin-bottom: 80px; margin-right:110px;" class="hero-container" data-aos="fade-in">
       <?php
     $sql = "SELECT * FROM user";
-$result =$conn->query($sql) or die("Query Unsuccessful.");
+   $result =$conn->query($sql) or die("Query Unsuccessful.");
 
 if(mysqli_num_rows($result) > 0)  {
     $row = mysqli_fetch_assoc($result)

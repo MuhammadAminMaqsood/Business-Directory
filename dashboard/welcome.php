@@ -574,7 +574,7 @@ include("Adminheader.php");
 }
 else
 {
-    header("location:login.php");
+    header("location:index.php");
 }
 
 ?>
