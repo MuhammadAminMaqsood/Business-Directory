@@ -148,7 +148,7 @@ if(mysqli_num_rows($result) > 0)  {
                 </ul>     
               </div>          
             </div>
-            <a class="btn btn-primary shadow-2 mb-4" href='edit.php?id=<?php echo $row['id'];?>'>Edit</a>        
+            <a class="btn btn-primary shadow-2 mb-4" href='edit.php?id=<?php echo $row['b_id'];?>'>Edit</a>        
           </div>
         </div>
         <?php }else{ ?>

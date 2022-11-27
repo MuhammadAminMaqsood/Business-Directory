@@ -1,5 +1,6 @@
 <?php
     include 'conn.php';
+    include 'editdata.php';
     ?>
   <head>
         <!-- Favicon icon -->
@@ -25,11 +26,11 @@
                $result = mysqli_query($conn, $sql) or die("Query Unsuccessful.");  
                 if(mysqli_num_rows($result) > 0)  {
                $row = mysqli_fetch_assoc($result);
-      
+                 $_SESSION["bid"] = $row['b_id'];
                    ?>
                 <div class="form-group">
                   <input type="text" class="form-control" name="bus_name"  placeholder="Business Name" value="<?php echo $row['b_name']; ?>" required>  
-                  <input type="hidden" class="form-control" name="id"  placeholder="Business Name" value="<?php echo $row['b_id']; ?>" >
+              
                 </div>
                 <div class="form-group">
                   <input type="text" class="form-control" name="bus_adrs"  placeholder="Address" value="<?php echo $row['b_address']; ?>" required>   
